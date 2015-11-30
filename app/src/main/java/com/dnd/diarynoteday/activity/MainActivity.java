@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.dnd.diarynoteday.R;
@@ -17,8 +18,10 @@ import com.dnd.diarynoteday.base.BaseActivity;
 import com.dnd.diarynoteday.db.DB_PASSWORD;
 import com.dnd.diarynoteday.utils.UIUtils;
 
+import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
@@ -26,19 +29,29 @@ public class MainActivity extends BaseActivity {
     private EditText edit_password;
     @ViewInject(R.id.btn_denglu)
     private Button btn_denglu;
-    @ViewInject(R.id.tv_laogong)
-    private TextView tv_laogong;
+    @ViewInject(R.id.iv_loading_bg)
+    private ImageView iv_loading_bg;
 
     private Animation animation;
     private DB_PASSWORD db;
 
-    private int index=0;
-
+    private int index = 0;
 
 
     @Override
     protected void init() {
+
+        ImageOptions imageOptions = new ImageOptions.Builder()
+                // 加载中或错误图片的ScaleType
+                //.setPlaceholderScaleType(ImageView.ScaleType.MATRIX)
+                // 默认自动适应大小
+                // .setSize(...)
+                .setIgnoreGif(true)
+                .setImageScaleType(ImageView.ScaleType.CENTER).build();
+       // x.image().bind(iv_loading_bg,"assets://bear_04.gif",imageOptions);
         animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_info);
+
+
         btn_denglu.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -76,7 +89,6 @@ public class MainActivity extends BaseActivity {
                                     startActivity(new Intent(MainActivity.this, TabDiaryActivity.class));
                                     MainActivity.this.finish();
                                 } else {
-                                    tv_laogong.setBackgroundResource(R.drawable.laogong);
                                     UIUtils.showToast(MainActivity.this, "密码不正确");
                                 }
                             } else {
@@ -84,7 +96,6 @@ public class MainActivity extends BaseActivity {
                                     startActivity(new Intent(MainActivity.this, CallbyeTabActivity.class));
                                     MainActivity.this.finish();
                                 } else {
-                                    tv_laogong.setBackgroundResource(R.drawable.laogong);
                                     UIUtils.showToast(MainActivity.this, "密码不正确");
                                 }
                             }
@@ -110,8 +121,8 @@ public class MainActivity extends BaseActivity {
 
         return super.onKeyDown(keyCode, event);
     }
-    public void exit_app()
-    {
+
+    public void exit_app() {
         final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
 
         dialog.setTitle("提示").setMessage("想要退出？").setPositiveButton("是的",

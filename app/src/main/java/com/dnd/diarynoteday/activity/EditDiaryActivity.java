@@ -49,6 +49,7 @@ public class EditDiaryActivity extends Activity implements View.OnClickListener 
 		switch (v.getId()) {
 			case R.id.btn_bianjifanhui :
 				btn_return.startAnimation(animation);
+
 				animation.setAnimationListener(new AnimationListener() {
 					
 					@Override
