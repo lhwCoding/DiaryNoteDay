@@ -24,11 +24,7 @@
             android:name=".activity.EditDiaryActivity"
             android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".activity.ContentViewActivity"></activity>
-        <activity android:name=".activity.MyDiaryActivity"></activity>
-        <activity android:name=".activity.SettingActivity"></activity>
 
-        <activity android:name=".activity.TabDiaryActivity"></activity>
-        <activity android:name=".activity.WriteDiaryActivity"></activity>
         <activity android:name=".activity.MainTabActivity"></activity>
     </application>
 
