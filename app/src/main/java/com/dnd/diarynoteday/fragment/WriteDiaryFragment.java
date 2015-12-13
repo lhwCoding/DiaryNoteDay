@@ -1,22 +1,17 @@
-package com.dnd.diarynoteday.activity;
+package com.dnd.diarynoteday.fragment;
 
-import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.view.KeyEvent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
-import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dnd.diarynoteday.R;
-import com.dnd.diarynoteday.base.BaseActivity;
+import com.dnd.diarynoteday.base.BaseFragment;
 import com.dnd.diarynoteday.db.Conmon;
 import com.dnd.diarynoteday.db.DBHelpe;
 
@@ -28,8 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * Created by hongwu on 2015/12/7.
+ */
 @ContentView(R.layout.writedialy_activity)
-public class WriteDiaryActivity extends BaseActivity implements View.OnClickListener {
+public class WriteDiaryFragment extends BaseFragment {
     @ViewInject(R.id.edit_writedialy)
     private EditText edittext;
     @ViewInject(R.id.edit_year)
@@ -45,20 +43,9 @@ public class WriteDiaryActivity extends BaseActivity implements View.OnClickList
 
 
     @Override
-    protected void init() {
-
-        IntView();
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    private void IntView() {
-        db = new DBHelpe(WriteDiaryActivity.this);
-
-
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        db = new DBHelpe(getContext());
     }
 
 
@@ -109,10 +96,10 @@ public class WriteDiaryActivity extends BaseActivity implements View.OnClickList
                                 values.put("winder", winder);
                                 db.insert(values);
                                 Conmon.bln_content = true;
-                                Toast.makeText(getApplicationContext(), "添加成功", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "添加成功", Toast.LENGTH_SHORT).show();
                                 edittext.setText("");
                             } else {
-                                Toast.makeText(getApplicationContext(), "宝贝你什么也没有写哟！", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getContext(), "宝贝你什么也没有写哟！", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -124,14 +111,14 @@ public class WriteDiaryActivity extends BaseActivity implements View.OnClickList
 
                 break;
             case R.id.edit_year:
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager)getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(edit_year.getWindowToken(), 0);
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd ");
                 String time = df.format(new Date());
                 edit_year.setText(time);
                 break;
             case R.id.edit_days:
-                InputMethodManager imm2 = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager imm2 = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm2.hideSoftInputFromWindow(edit_days.getWindowToken(), 0);
                 Calendar c = Calendar.getInstance();
                 mWay = String.valueOf(c.get(Calendar.DAY_OF_WEEK));
@@ -156,35 +143,6 @@ public class WriteDiaryActivity extends BaseActivity implements View.OnClickList
             default:
                 break;
         }
-
-    }
-
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            exit_app();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-
-    public void exit_app() {
-        final AlertDialog.Builder dialog = new AlertDialog.Builder(this);
-
-        dialog.setTitle("提示").setMessage("确定要退出？").setPositiveButton("是的",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        System.exit(0);
-                    }
-                }).setNegativeButton("不了",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                    }
-                });
-        AlertDialog dialog_dialog = dialog.create();
-        dialog_dialog.show();
 
     }
 }

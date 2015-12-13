@@ -1,7 +1,5 @@
 package com.dnd.diarynoteday.db;
 
-import java.util.ArrayList;
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;

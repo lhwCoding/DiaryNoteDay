@@ -1,6 +1,5 @@
 package com.dnd.diarynoteday.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,23 +17,29 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.dnd.diarynoteday.R;
+import com.dnd.diarynoteday.base.BaseActivity;
 import com.dnd.diarynoteday.db.Conmon;
 import com.dnd.diarynoteday.db.DBHelpe;
 
-public class MyDiaryActivity extends Activity {
+import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.ViewInject;
+
+@ContentView(R.layout.mydialy_activity)
+public class MyDiaryActivity extends BaseActivity {
+	@ViewInject(R.id.listview)
 	private ListView listview;
+	@ViewInject(R.id.tv_mytitle)
+	private TextView tv_madialy;
+
 	private String[] from = {"content", "data", "days"};
 	private int[] to = {R.id.tv, R.id.tv_year, R.id.tv_days};
 	private SimpleCursorAdapter adapter;
 	private Cursor cursor;
 	private DBHelpe db;
 	private int index = 1;
-	private TextView tv_madialy;
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mydialy_activity);
+	protected void init() {
 		intview();
 		String s = db.selectall();
 		if (!s.equals("")) {
@@ -56,7 +61,6 @@ public class MyDiaryActivity extends Activity {
 						MyDiaryActivity.this.handler.sendMessage(m);
 					}
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -64,6 +68,14 @@ public class MyDiaryActivity extends Activity {
 		};
 		thread.start();
 	}
+
+	@Override
+	protected void initData() {
+
+	}
+
+
+
 
 	private Handler handler = new Handler() {
 		@Override
@@ -103,6 +115,7 @@ public class MyDiaryActivity extends Activity {
 
 		super.onResume();
 	}
+
 
 	private void intview() {
 		db = new DBHelpe(MyDiaryActivity.this);

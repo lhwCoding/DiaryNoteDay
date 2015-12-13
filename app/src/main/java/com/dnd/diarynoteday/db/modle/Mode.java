@@ -1,4 +1,4 @@
-package com.dnd.diarynoteday.db;
+package com.dnd.diarynoteday.db.modle;
 
 public class Mode {
 	private String content;

@@ -23,7 +23,7 @@
     <EditText 
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_shezhi"
+        android:id="@+id/edit_setting"
         android:background="@drawable/editback"
         android:layout_weight="1"
         android:layout_marginLeft="10dp"
@@ -35,22 +35,13 @@
     <Button 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_shezhi"
+        android:id="@+id/btn_setting"
         android:text="确定"
         android:background="@drawable/bt_public_bg"
         android:layout_marginRight="10dp"
         />
     </LinearLayout>
     
-    <TextView
-        android:id="@+id/tv_laogong2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_denglu"
-        android:layout_marginBottom="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone" />
+
 
 </LinearLayout>

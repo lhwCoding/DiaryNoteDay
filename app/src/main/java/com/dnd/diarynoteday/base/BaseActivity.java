@@ -24,12 +24,12 @@ public abstract class BaseActivity extends Activity {
         super.onCreate(savedInstanceState);
         MyActivityManager.addActivity(this);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+      /*  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
             SystemBarTintManager tintManager = new SystemBarTintManager(this);
             tintManager.setStatusBarTintEnabled(true);
             tintManager.setStatusBarTintResource(R.drawable.loading_bg);//通知栏所需颜色
-        }
+        }*/
         x.view().inject(this);
         app = (BaseApplication) getApplication();
         init();

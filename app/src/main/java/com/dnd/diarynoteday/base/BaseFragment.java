@@ -1,6 +1,5 @@
 package com.dnd.diarynoteday.base;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,10 +9,8 @@ import android.view.ViewGroup;
 import org.xutils.x;
 
 
-public abstract class BaseFragment extends Fragment {
+public class BaseFragment extends Fragment {
 
-    public View view;
-    public Context context;
 
     private boolean injected = false;
 
@@ -23,7 +20,6 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         injected = true;
-        view = initUI();
 
         return x.view().inject(this, inflater, container);
     }
@@ -36,19 +32,12 @@ public abstract class BaseFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        context = getActivity();
-        super.onCreate(savedInstanceState);
-    }
-
 
     /**
      * 填充数据
      */
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        initData();
         super.onActivityCreated(savedInstanceState);
 
     }
@@ -61,17 +50,5 @@ public abstract class BaseFragment extends Fragment {
         super.onResume();
     }
 
-
-    /**
-     * 初始化界面
-     *
-     * @return
-     */
-    public abstract View initUI();
-
-    /**
-     * 填充数据
-     */
-    public abstract void initData();
 
 }

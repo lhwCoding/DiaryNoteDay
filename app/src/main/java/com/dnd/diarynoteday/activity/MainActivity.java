@@ -11,7 +11,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.dnd.diarynoteday.R;
 import com.dnd.diarynoteday.base.BaseActivity;
@@ -22,6 +21,7 @@ import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
+
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity {
@@ -45,10 +45,10 @@ public class MainActivity extends BaseActivity {
                 // 加载中或错误图片的ScaleType
                 //.setPlaceholderScaleType(ImageView.ScaleType.MATRIX)
                 // 默认自动适应大小
-                // .setSize(...)
+                .setSize(getWindowManager().getDefaultDisplay().getWidth(),getWindowManager().getDefaultDisplay().getHeight())
                 .setIgnoreGif(true)
                 .setImageScaleType(ImageView.ScaleType.CENTER).build();
-       // x.image().bind(iv_loading_bg,"assets://bear_04.gif",imageOptions);
+         x.image().bind(iv_loading_bg,"assets://bear_04.gif",imageOptions);
         animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_info);
 
 
@@ -86,14 +86,14 @@ public class MainActivity extends BaseActivity {
                             System.out.println("021333" + s);
                             if (s.equals("")) {
                                 if (edit_password.getText().toString().equals("123")) {
-                                    startActivity(new Intent(MainActivity.this, TabDiaryActivity.class));
+                                    startActivity(new Intent(MainActivity.this, MainTabActivity.class));
                                     MainActivity.this.finish();
                                 } else {
                                     UIUtils.showToast(MainActivity.this, "密码不正确");
                                 }
                             } else {
                                 if (edit_password.getText().toString().equals(s)) {
-                                    startActivity(new Intent(MainActivity.this, CallbyeTabActivity.class));
+                                    startActivity(new Intent(MainActivity.this, MainTabActivity.class));
                                     MainActivity.this.finish();
                                 } else {
                                     UIUtils.showToast(MainActivity.this, "密码不正确");

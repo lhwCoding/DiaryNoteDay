@@ -27,6 +27,7 @@
             android:background="@drawable/editback"
             android:paddingLeft="10dp"
             android:password="true"
+            android:textColorHint="#FFFFFF"
             android:hint="初始密码123" />
 
         <Button

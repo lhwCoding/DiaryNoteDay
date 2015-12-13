@@ -1,6 +1,5 @@
 package com.dnd.diarynoteday.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -8,9 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.animation.Animation;
-import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,9 +17,10 @@ import com.dnd.diarynoteday.R;
 import com.dnd.diarynoteday.base.BaseActivity;
 import com.dnd.diarynoteday.db.Conmon;
 import com.dnd.diarynoteday.db.DBHelpe;
-import com.dnd.diarynoteday.db.Mode;
+import com.dnd.diarynoteday.db.modle.Mode;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -38,13 +36,13 @@ public class ContentViewActivity extends BaseActivity {
 
     @ViewInject(R.id.tv_content)
     private TextView tv_content;
-    @ViewInject(R.id.btn_bianji)
-    private TextView btn_bianji;
+    @ViewInject(R.id.btn_edit)
+    private TextView btn_edit;
     @ViewInject(R.id.btn_delete)
     private TextView btn_delete;
 
 
-    @ViewInject(R.id.btn_fanhui)
+    @ViewInject(R.id.btn_back)
     private Button btn_return;
 
     private Animation animation;
@@ -55,7 +53,6 @@ public class ContentViewActivity extends BaseActivity {
 
     @Override
     protected void init() {
-        // this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         intview();
     }
 
@@ -66,6 +63,7 @@ public class ContentViewActivity extends BaseActivity {
 
     private void intview() {
         animation = AnimationUtils.loadAnimation(ContentViewActivity.this, R.anim.anim_click_info);
+
         String content = null, data = null, days = null, winder = null;
 
         DB = new DBHelpe(ContentViewActivity.this);
@@ -84,91 +82,29 @@ public class ContentViewActivity extends BaseActivity {
         tv_days.setText(days);
         tv_content.setText(content);
         tv_winder.setText("天气：" + winder);
-        btn_return.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                v.startAnimation(animation);
-                animation.setAnimationListener(new AnimationListener() {
 
-                    @Override
-                    public void onAnimationStart(Animation animation) {
+    }
 
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        ContentViewActivity.this.finish();
-
-                    }
-                });
-
-            }
-        });
-        btn_bianji.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                v.startAnimation(animation);
-                animation.setAnimationListener(new AnimationListener() {
-
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        Intent intent = new Intent(ContentViewActivity.this, EditDiaryActivity.class);
-                        Bundle bd = new Bundle();
-                        bd.putString("content", tv_content.getText().toString());
-                        bd.putString("id", id);
-                        intent.putExtra("edit_diary_activity", bd);
-                        startActivity(intent);
-                        ContentViewActivity.this.finish();
-
-                    }
-                });
-
-            }
-        });
-        btn_delete.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                v.startAnimation(animation);
-                animation.setAnimationListener(new AnimationListener() {
-
-                    @Override
-                    public void onAnimationStart(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        dialog();
-
-                    }
-                });
-
-            }
-        });
-
+    @Event(value = {R.id.btn_edit, R.id.btn_delete, R.id.btn_back}, type = View.OnClickListener.class)
+    private void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_edit:
+                Intent intent = new Intent(ContentViewActivity.this, EditDiaryActivity.class);
+                Bundle bd = new Bundle();
+                bd.putString("content", tv_content.getText().toString());
+                bd.putString("id", id);
+                intent.putExtra("edit_diary_activity", bd);
+                startActivity(intent);
+                ContentViewActivity.this.finish();
+                break;
+            case R.id.btn_delete:
+                dialog();
+                break;
+            case R.id.btn_back:
+                ContentViewActivity.this.finish();
+                break;
+        }
     }
 
     public void dialog() {

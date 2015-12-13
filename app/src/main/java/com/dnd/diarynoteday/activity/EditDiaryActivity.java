@@ -1,5 +1,4 @@
 package com.dnd.diarynoteday.activity;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,21 +12,30 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dnd.diarynoteday.R;
+import com.dnd.diarynoteday.base.BaseActivity;
 import com.dnd.diarynoteday.db.Conmon;
 import com.dnd.diarynoteday.db.DBHelpe;
 
-public class EditDiaryActivity extends Activity implements View.OnClickListener {
+import org.xutils.view.annotation.ContentView;
+
+@ContentView(R.layout.edit_diary_activity)
+public class EditDiaryActivity extends BaseActivity implements View.OnClickListener {
 	private Button btn_return, btn_queding, btn_quxiao;
 	private EditText edit_content;
 	private String str_content,str_id;
 	private Animation animation;
+
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.edit_diary_activity);
+	protected void init() {
 		intview();
 	}
+
+	@Override
+	protected void initData() {
+
+	}
+
 	private void intview() {
 		btn_return = (Button) findViewById(R.id.btn_bianjifanhui);
 		btn_queding = (Button) findViewById(R.id.btn_bianjiqueding);
