@@ -20,7 +20,7 @@ import org.xutils.view.annotation.ViewInject;
 /**
  * Created by hongwu on 2015/12/7.
  */
-@ContentView(R.layout.setting_activity)
+@ContentView(R.layout.setting_fragment)
 public class SettingFragment extends BaseFragment {
     @ViewInject(R.id.edit_setting)
     private EditText edit_setting;

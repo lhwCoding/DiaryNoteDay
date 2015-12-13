@@ -26,7 +26,7 @@ import java.util.Date;
 /**
  * Created by hongwu on 2015/12/7.
  */
-@ContentView(R.layout.writedialy_activity)
+@ContentView(R.layout.writedialy_fragment)
 public class WriteDiaryFragment extends BaseFragment {
     @ViewInject(R.id.edit_writedialy)
     private EditText edittext;

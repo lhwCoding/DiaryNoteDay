@@ -2,20 +2,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@drawable/maintab_toolbar_bg"
+        >
 
         <TextView
             android:id="@+id/tv_mydialy"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/fl_top_title_bg"
+            android:layout_centerVertical="true"
             android:gravity="center"
             android:text="我的小故事"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <Button
@@ -25,9 +28,11 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="19dp"
-            android:background="@drawable/bt_public_bg"
+            android:textSize="18sp"
+            android:background="@drawable/maintab_toolbar_bg"
+            android:textColor="@color/white"
             android:text="返回"
-            android:textColor="#FFFFFF" />
+             />
     </RelativeLayout>
 
     <LinearLayout
@@ -106,7 +111,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/aboutus_buttonbg"
+                android:background="@drawable/maintab_toolbar_bg"
+                android:textColor="@color/white"
                 android:text="编辑"
                 />
 
@@ -117,14 +123,15 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/aboutus_buttonbg"
+                android:background="@drawable/maintab_toolbar_bg"
+                android:textColor="@color/white"
                 android:text="删除" />
         </LinearLayout>
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="10dp"
-            android:background="#FFFFFF" />
+            android:background="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

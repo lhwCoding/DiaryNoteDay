@@ -28,6 +28,7 @@
             android:paddingLeft="10dp"
             android:password="true"
             android:textColorHint="#FFFFFF"
+            android:textCursorDrawable="@color/white"
             android:hint="初始密码123" />
 
         <Button

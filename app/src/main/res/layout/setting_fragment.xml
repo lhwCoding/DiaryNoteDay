@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" 
-    android:background="#FFFFFF"
+    android:background="@color/white"
     >
    <TextView
         android:id="@+id/tv_denglu"
@@ -11,9 +11,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="设置"
-        android:textColor="#FFFFFF"
+       android:background="@drawable/maintab_toolbar_bg"
+       android:textColor="@color/white"
         android:textSize="18sp"
-        android:background="@drawable/fl_top_title_bg"
          />
     <LinearLayout
           android:layout_width="fill_parent"
@@ -37,7 +37,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_setting"
         android:text="确定"
-        android:background="@drawable/bt_public_bg"
+        android:background="@drawable/maintab_toolbar_bg"
+        android:textColor="@color/white"
         android:layout_marginRight="10dp"
         />
     </LinearLayout>

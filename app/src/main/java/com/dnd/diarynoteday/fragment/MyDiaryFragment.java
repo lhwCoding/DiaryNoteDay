@@ -6,10 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
@@ -22,18 +21,20 @@ import com.dnd.diarynoteday.db.DBHelpe;
 import com.dnd.diarynoteday.utils.UIUtils;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 /**
  * Created by hongwu on 2015/12/7.
  */
-@ContentView(R.layout.mydialy_activity)
+@ContentView(R.layout.mydialy_fragment)
 public class MyDiaryFragment extends BaseFragment {
     @ViewInject(R.id.listview)
     private ListView listview;
     @ViewInject(R.id.tv_mytitle)
     private TextView tv_madialy;
-
+    @ViewInject(R.id.bt_login)
+    private Button bt_login;
     private String[] from = {"content", "data", "days"};
     private int[] to = {R.id.tv, R.id.tv_year, R.id.tv_days};
     private SimpleCursorAdapter adapter;
@@ -99,7 +100,17 @@ public class MyDiaryFragment extends BaseFragment {
         thread.start();
 
     }
+      @Event(R.id.bt_login)
+      private void onClick(View view){
+          switch (view.getId()){
+              case  R.id.bt_login:
 
+                  break;
+              default:
+                  break;
+
+          }
+      }
 
     @Override
     public void onResume() {

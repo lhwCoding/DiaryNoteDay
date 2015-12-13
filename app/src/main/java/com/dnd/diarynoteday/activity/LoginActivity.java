@@ -24,7 +24,7 @@ import org.xutils.x;
 
 
 @ContentView(R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity {
     @ViewInject(R.id.edit_denglu)
     private EditText edit_password;
     @ViewInject(R.id.btn_denglu)
@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity {
                 .setIgnoreGif(true)
                 .setImageScaleType(ImageView.ScaleType.CENTER).build();
          x.image().bind(iv_loading_bg,"assets://bear_04.gif",imageOptions);
-        animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim_click_info);
+        animation = AnimationUtils.loadAnimation(LoginActivity.this, R.anim.anim_click_info);
 
 
         btn_denglu.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class MainActivity extends BaseActivity {
                             alphaAnimation2.setRepeatMode(Animation.REVERSE);
                             edit_password.setAnimation(alphaAnimation2);
                             alphaAnimation2.start();
-                            UIUtils.showToast(MainActivity.this, "密码不正确");
+                            UIUtils.showToast(LoginActivity.this, "密码不正确");
 
                         } else {
                             db = new DB_PASSWORD(getApplicationContext());
@@ -86,17 +86,17 @@ public class MainActivity extends BaseActivity {
                             System.out.println("021333" + s);
                             if (s.equals("")) {
                                 if (edit_password.getText().toString().equals("123")) {
-                                    startActivity(new Intent(MainActivity.this, MainTabActivity.class));
-                                    MainActivity.this.finish();
+                                    startActivity(new Intent(LoginActivity.this, MainTabActivity.class));
+                                    LoginActivity.this.finish();
                                 } else {
-                                    UIUtils.showToast(MainActivity.this, "密码不正确");
+                                    UIUtils.showToast(LoginActivity.this, "密码不正确");
                                 }
                             } else {
                                 if (edit_password.getText().toString().equals(s)) {
-                                    startActivity(new Intent(MainActivity.this, MainTabActivity.class));
-                                    MainActivity.this.finish();
+                                    startActivity(new Intent(LoginActivity.this, MainTabActivity.class));
+                                    LoginActivity.this.finish();
                                 } else {
-                                    UIUtils.showToast(MainActivity.this, "密码不正确");
+                                    UIUtils.showToast(LoginActivity.this, "密码不正确");
                                 }
                             }
                         }
@@ -129,7 +129,7 @@ public class MainActivity extends BaseActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,
                                         int which) {
-                        MainActivity.this.finish();
+                        LoginActivity.this.finish();
                     }
                 }).setNegativeButton("不了",
                 new DialogInterface.OnClickListener() {
