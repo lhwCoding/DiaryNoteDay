@@ -3,9 +3,11 @@ package com.dnd.diarynoteday.activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
@@ -33,7 +35,9 @@ public class MainTabActivity extends FragmentActivity {
 
     //Tab选项卡的文字
     private String mTextviewArray[] = {"我的日记", "写日记", "设置"};
-
+    private DrawerLayout drawerLayout;
+    private RelativeLayout leftLayout;
+    private RelativeLayout rightLayout;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_tab_layout);
@@ -45,6 +49,10 @@ public class MainTabActivity extends FragmentActivity {
      * 初始化组件
      */
     private void initView(){
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        leftLayout=(RelativeLayout) findViewById(R.id.left);
+        rightLayout=(RelativeLayout) findViewById(R.id.right);
         //实例化布局对象
         layoutInflater = LayoutInflater.from(this);
 
